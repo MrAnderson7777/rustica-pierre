@@ -804,6 +804,32 @@ body {
 .histoire-text em { font-family: var(--r-font-italic); font-size: 1.0625rem; }
 
 /* ==========================================================
+   RESPONSIVE GRID UTILITIES
+   ========================================================== */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.grid-2--center { align-items: center; }
+.grid-2--gap-lg { gap: 5rem; }
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .grid-2, .grid-2--center, .grid-2--gap-lg { grid-template-columns: 1fr; gap: 2rem; }
+  .grid-3 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .grid-3 { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================
    UTILITIES
    ========================================================== */
 .text-center { text-align: center; }
