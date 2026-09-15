@@ -16,31 +16,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // -- Contact form → mailto --
+  // -- Web3Forms contact --
   const form = document.getElementById('contact-form');
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      const btn = form.querySelector('[type="submit"]');
+      btn.textContent = 'Envoi en cours…';
+      btn.disabled = true;
 
-      const name     = form.querySelector('#name')?.value.trim() || '';
-      const phone    = form.querySelector('#phone')?.value.trim() || '';
-      const materiau = form.querySelector('#materiau')?.value || '';
-      const message  = form.querySelector('#message')?.value.trim() || '';
-
-      if (!name || !message) {
-        alert('Merci de renseigner votre nom et votre projet.');
-        return;
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: new FormData(form),
+        });
+        const json = await res.json();
+        if (json.success) {
+          form.reset();
+          document.getElementById('form-success').style.display = 'block';
+          btn.textContent = 'Message envoyé !';
+        } else {
+          throw new Error();
+        }
+      } catch {
+        btn.textContent = 'Erreur — appelez le 05 63 25 47 17';
+        btn.disabled = false;
       }
-
-      const subject = encodeURIComponent('Demande de devis — Rustica Pierre');
-      const body = encodeURIComponent(
-        `Nom : ${name}\n` +
-        (phone    ? `Téléphone : ${phone}\n`      : '') +
-        (materiau ? `Matériau : ${materiau}\n`    : '') +
-        `\nProjet :\n${message}\n`
-      );
-
-      window.location.href = `mailto:contact@bousquet-carriere-tp.fr?subject=${subject}&body=${body}`;
     });
   }
 

@@ -40,10 +40,19 @@
             <h2 class="heading-display mb-4" style="font-size: 1.75rem">Votre demande</h2>
 
             <form class="contact-form" id="contact-form" novalidate>
+              <input type="hidden" name="access_key" value="WEB3FORMS_KEY">
+              <input type="hidden" name="subject" value="Nouveau devis — Rustica Pierre">
+              <input type="hidden" name="from_name" value="Site Rustica Pierre">
+              <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
 
               <div class="form-group">
                 <label class="form-label" for="name">Nom complet *</label>
                 <input class="form-input" type="text" id="name" name="name" required placeholder="Jean Dupont" autocomplete="name">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="email">Email *</label>
+                <input class="form-input" type="email" id="email" name="email" required placeholder="jean@exemple.fr" autocomplete="email">
               </div>
 
               <div class="form-group">
@@ -72,11 +81,11 @@
               </div>
 
               <button type="submit" class="btn btn-primary" style="width: 100%">
-                Envoyer ma demande par email
+                Envoyer ma demande
               </button>
-              <p style="margin-top: 0.75rem; font-size: 0.8125rem; color: var(--r-terre)">
-                Votre client mail s'ouvrira avec le message pré-rempli.
-              </p>
+              <div class="form-success" id="form-success">
+                Message envoyé — nous vous répondons sous 24 h ouvrées.
+              </div>
             </form>
           </div>
 
