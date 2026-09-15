@@ -1,0 +1,7 @@
+# Rustica Pierre — Cloudflare Pages redirects
+
+# Ancienne URL WordPress (si migration future)
+# /blog/*    /journal/:splat   301
+
+# Trailing slash normalization (Cloudflare gère ça automatiquement)
+/index.html    /    301
