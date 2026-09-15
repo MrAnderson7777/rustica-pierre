@@ -16,35 +16,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // -- Web3Forms Contact --
+  // -- Contact form → mailto --
   const form = document.getElementById('contact-form');
   if (form) {
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const btn = form.querySelector('[type="submit"]');
-      const originalText = btn.textContent;
-      btn.textContent = 'Envoi en cours…';
-      btn.disabled = true;
 
-      try {
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          body: new FormData(form),
-        });
-        const json = await res.json();
-        if (json.success) {
-          form.reset();
-          const successEl = document.getElementById('form-success');
-          if (successEl) successEl.style.display = 'block';
-          btn.textContent = 'Message envoyé !';
-        } else {
-          throw new Error(json.message || 'Erreur');
-        }
-      } catch (err) {
-        console.error('Web3Forms error:', err);
-        btn.textContent = 'Erreur — réessayez ou appelez le 05 63 25 47 17';
-        btn.disabled = false;
+      const name     = form.querySelector('#name')?.value.trim() || '';
+      const phone    = form.querySelector('#phone')?.value.trim() || '';
+      const materiau = form.querySelector('#materiau')?.value || '';
+      const message  = form.querySelector('#message')?.value.trim() || '';
+
+      if (!name || !message) {
+        alert('Merci de renseigner votre nom et votre projet.');
+        return;
       }
+
+      const subject = encodeURIComponent('Demande de devis — Rustica Pierre');
+      const body = encodeURIComponent(
+        `Nom : ${name}\n` +
+        (phone    ? `Téléphone : ${phone}\n`      : '') +
+        (materiau ? `Matériau : ${materiau}\n`    : '') +
+        `\nProjet :\n${message}\n`
+      );
+
+      window.location.href = `mailto:contact@bousquet-carriere-tp.fr?subject=${subject}&body=${body}`;
     });
   }
 

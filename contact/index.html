@@ -40,20 +40,10 @@
             <h2 class="heading-display mb-4" style="font-size: 1.75rem">Votre demande</h2>
 
             <form class="contact-form" id="contact-form" novalidate>
-              <!-- Remplacer YOUR_WEB3FORMS_KEY par la clé obtenue sur web3forms.com -->
-              <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
-              <input type="hidden" name="subject" value="Nouveau devis — Rustica Pierre">
-              <input type="hidden" name="from_name" value="Site Rustica Pierre">
-              <input type="checkbox" name="botcheck" style="display: none" tabindex="-1" autocomplete="off">
 
               <div class="form-group">
                 <label class="form-label" for="name">Nom complet *</label>
                 <input class="form-input" type="text" id="name" name="name" required placeholder="Jean Dupont" autocomplete="name">
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="email">Email *</label>
-                <input class="form-input" type="email" id="email" name="email" required placeholder="jean@exemple.fr" autocomplete="email">
               </div>
 
               <div class="form-group">
@@ -65,13 +55,13 @@
                 <label class="form-label" for="materiau">Type de matériau souhaité</label>
                 <select class="form-select" id="materiau" name="materiau">
                   <option value="">Sélectionnez…</option>
-                  <option value="blocs-pierre">Blocs de pierre à bâtir</option>
-                  <option value="pierres-gabions">Pierres à gabions / enrochement</option>
-                  <option value="dalles">Dalles en pierre naturelle</option>
-                  <option value="gravette-6-10">Gravette 6/10</option>
-                  <option value="granulat-4-10">Granulat 4/10</option>
-                  <option value="pierres-drain">Pierres à drain 20/40</option>
-                  <option value="autre">Autre / je ne sais pas encore</option>
+                  <option value="Blocs de pierre à bâtir">Blocs de pierre à bâtir</option>
+                  <option value="Pierres à gabions / enrochement">Pierres à gabions / enrochement</option>
+                  <option value="Dalles en pierre naturelle">Dalles en pierre naturelle</option>
+                  <option value="Gravette 6/10">Gravette 6/10</option>
+                  <option value="Granulat 4/10">Granulat 4/10</option>
+                  <option value="Pierres à drain 20/40">Pierres à drain 20/40</option>
+                  <option value="Autre / je ne sais pas encore">Autre / je ne sais pas encore</option>
                 </select>
               </div>
 
@@ -82,11 +72,11 @@
               </div>
 
               <button type="submit" class="btn btn-primary" style="width: 100%">
-                Envoyer ma demande
+                Envoyer ma demande par email
               </button>
-              <div class="form-success" id="form-success">
-                ✓ Message envoyé ! Nous vous répondons sous 24 h ouvrées.
-              </div>
+              <p style="margin-top: 0.75rem; font-size: 0.8125rem; color: var(--r-terre)">
+                Votre client mail s'ouvrira avec le message pré-rempli.
+              </p>
             </form>
           </div>
 
