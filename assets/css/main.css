@@ -25,10 +25,10 @@ body {
 
 /* -- Variables -- */
 :root {
-  --r-font-display: 'Anton', Impact, sans-serif;
-  --r-font-body: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --r-font-display: 'Playfair Display', Georgia, serif;
+  --r-font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --r-font-italic: 'DM Serif Display', Georgia, serif;
-  --r-font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  --r-font-mono: 'DM Mono', 'Courier New', monospace;
   --r-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
 
   --r-white:      #FFFFFF;
@@ -50,8 +50,7 @@ body {
   --r-px: clamp(1rem, 4vw, 3rem);
 }
 
-/* -- Google Fonts -- */
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Public+Sans:wght@400;500;600&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
+/* -- Google Fonts chargées via components.js -- */
 
 /* ==========================================================
    LAYOUT
@@ -240,9 +239,9 @@ body {
    ========================================================== */
 .heading-display {
   font-family: var(--r-font-display);
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
 }
 .heading-serif { font-family: var(--r-font-italic); font-weight: 400; }
 .label-mono {
@@ -310,10 +309,10 @@ body {
 .hero-label { margin-bottom: 1.5rem; color: var(--r-terracotta); }
 .hero-title {
   font-family: var(--r-font-display);
-  font-size: clamp(2.75rem, 7vw, 5.5rem);
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  line-height: 1.02;
+  font-size: clamp(2.5rem, 6vw, 4.75rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
   margin-bottom: 1.5rem;
 }
 .hero-sub {
@@ -355,9 +354,9 @@ body {
 .product-card-label { margin-bottom: 0.5rem; }
 .product-card-title {
   font-family: var(--r-font-display);
-  font-size: 1.25rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
   margin-bottom: 0.75rem;
   color: var(--r-noir);
 }
@@ -399,8 +398,8 @@ body {
 .stat-number {
   font-family: var(--r-font-display);
   font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
   color: var(--r-terracotta);
-  text-transform: uppercase;
   display: block;
   line-height: 1;
 }
@@ -481,8 +480,8 @@ body {
 .cta-band-title {
   font-family: var(--r-font-display);
   font-size: clamp(1.75rem, 4vw, 3rem);
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
+  font-weight: 700;
+  letter-spacing: 0.01em;
   margin-bottom: 1rem;
 }
 .cta-band-sub {
@@ -528,8 +527,8 @@ body {
 .realisation-label {
   font-family: var(--r-font-display);
   font-size: 1.125rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  font-weight: 700;
+  letter-spacing: 0.01em;
   color: #fff;
 }
 
@@ -549,9 +548,9 @@ body {
 .page-title {
   font-family: var(--r-font-display);
   font-size: clamp(2rem, 5vw, 4rem);
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
   margin-bottom: 1rem;
   color: var(--r-noir);
 }

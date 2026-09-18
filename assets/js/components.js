@@ -123,4 +123,15 @@ function injectComponents() {
   }
 }
 
+function injectFonts() {
+  if (!document.getElementById('gfonts')) {
+    const link = document.createElement('link');
+    link.id = 'gfonts';
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;700&display=swap';
+    document.head.appendChild(link);
+  }
+}
+
+injectFonts();
 document.addEventListener('DOMContentLoaded', injectComponents);
