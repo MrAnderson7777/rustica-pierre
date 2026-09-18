@@ -70,7 +70,7 @@ const FOOTER_HTML = `
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2025 Bousquet Carrière & TP — Rustica Pierre · SIREN 421 565 581</span>
+      <span>© 2026 Bousquet Carrière & TP — Rustica Pierre · SIREN 421 565 581</span>
       <span>Villefranche-de-Rouergue, Aveyron (12)</span>
     </div>
   </div>
