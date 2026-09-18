@@ -25,10 +25,10 @@ body {
 
 /* -- Variables -- */
 :root {
-  --r-font-display: 'Playfair Display', Georgia, serif;
-  --r-font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --r-font-display: 'Anton', Impact, sans-serif;
+  --r-font-body: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --r-font-italic: 'DM Serif Display', Georgia, serif;
-  --r-font-mono: 'DM Mono', 'Courier New', monospace;
+  --r-font-mono: 'JetBrains Mono', 'Courier New', monospace;
   --r-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
 
   --r-white:      #FFFFFF;
@@ -239,9 +239,9 @@ body {
    ========================================================== */
 .heading-display {
   font-family: var(--r-font-display);
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
 }
 .heading-serif { font-family: var(--r-font-italic); font-weight: 400; }
 .label-mono {
@@ -309,10 +309,10 @@ body {
 .hero-label { margin-bottom: 1.5rem; color: var(--r-terracotta); }
 .hero-title {
   font-family: var(--r-font-display);
-  font-size: clamp(2.5rem, 6vw, 4.75rem);
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  line-height: 1.1;
+  font-size: clamp(2.75rem, 7vw, 5.5rem);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.02;
   margin-bottom: 1.5rem;
 }
 .hero-sub {
@@ -327,6 +327,53 @@ body {
 /* ==========================================================
    PRODUCT CARDS
    ========================================================== */
+/* Product Gallery (thumbnails + lightbox) */
+.product-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+.product-gallery-thumb {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+  cursor: zoom-in;
+  transition: opacity 0.2s;
+}
+.product-gallery-thumb:hover { opacity: 0.82; }
+
+.r-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15,10,5,0.95);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+.r-lightbox.open { display: flex; }
+.r-lightbox img {
+  max-width: min(90vw, 1200px);
+  max-height: 90vh;
+  object-fit: contain;
+}
+.r-lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  color: rgba(255,255,255,0.75);
+  font-size: 2.5rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+  font-family: sans-serif;
+}
+.r-lightbox-close:hover { color: #fff; }
+
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
