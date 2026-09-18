@@ -343,14 +343,20 @@ body {
   box-shadow: var(--r-shadow-hover);
   transform: translateY(-4px);
 }
-.product-card-img {
+.product-card-img,
+.product-card-img-alt {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  aspect-ratio: 4/3;
+  height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s var(--r-ease);
+  transition: opacity 0.4s var(--r-ease), transform 0.5s var(--r-ease);
 }
-.product-card:hover .product-card-img { transform: scale(1.03); }
+.product-card-img { opacity: 1; }
+.product-card-img-alt { opacity: 0; }
+.product-card:hover .product-card-img { opacity: 0; transform: scale(1.04); }
+.product-card:hover .product-card-img-alt { opacity: 1; transform: scale(1.04); }
 .product-card-body { padding: 1.5rem; }
 .product-card-label { margin-bottom: 0.5rem; }
 .product-card-title {
@@ -596,6 +602,74 @@ body {
   aspect-ratio: 4/3;
   object-fit: cover;
 }
+
+/* --- Gallery: split sections --- */
+.product-images { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.product-main-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+  cursor: zoom-in;
+}
+
+.product-thumbs { display: flex; gap: 0.375rem; }
+
+.product-thumb {
+  flex: 1;
+  min-width: 0;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+  border: 2px solid transparent;
+  opacity: 0.65;
+  transition: opacity 0.15s, border-color 0.15s;
+}
+.product-thumb:hover { opacity: 1; }
+.product-thumb.active { border-color: var(--r-terracotta); opacity: 1; }
+
+/* --- Gallery: cards --- */
+.product-card-imgs {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+
+/* --- Lightbox --- */
+.r-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15,10,5,0.96);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+.r-lightbox.open { display: flex; }
+.r-lightbox img {
+  max-width: min(90vw, 1400px);
+  max-height: 90vh;
+  object-fit: contain;
+  display: block;
+  cursor: default;
+}
+.r-lightbox-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  color: rgba(255,255,255,0.8);
+  font-size: 2.25rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+  padding: 0.25rem;
+}
+.r-lightbox-close:hover { color: #fff; }
+
 .product-specs { list-style: none; margin-bottom: 2rem; }
 .product-specs li {
   padding: 0.5rem 0;

@@ -123,4 +123,42 @@ function injectComponents() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', injectComponents);
+function initLightbox() {
+  const lb = document.createElement('div');
+  lb.id = 'r-lightbox';
+  lb.className = 'r-lightbox';
+  lb.innerHTML = '<button class="r-lightbox-close" aria-label="Fermer">&times;</button><img src="" alt="">';
+  document.body.appendChild(lb);
+
+  const close = () => { lb.classList.remove('open'); document.body.style.overflow = ''; };
+  lb.querySelector('.r-lightbox-close').addEventListener('click', close);
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+}
+
+function initProductGallery() {
+  // Thumbnail → swap main image
+  document.addEventListener('click', e => {
+    const thumb = e.target.closest('.product-thumb');
+    if (!thumb) return;
+    const container = thumb.closest('.product-images');
+    const mainImg = container.querySelector('.product-main-img');
+    mainImg.src = thumb.src;
+    mainImg.alt = thumb.alt;
+    container.querySelectorAll('.product-thumb').forEach(t => t.classList.remove('active'));
+    thumb.classList.add('active');
+  });
+
+  // Main image → lightbox
+  document.addEventListener('click', e => {
+    const mainImg = e.target.closest('.product-main-img');
+    if (!mainImg) return;
+    const lb = document.getElementById('r-lightbox');
+    lb.querySelector('img').src = mainImg.src;
+    lb.querySelector('img').alt = mainImg.alt;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => { injectComponents(); initLightbox(); initProductGallery(); });
