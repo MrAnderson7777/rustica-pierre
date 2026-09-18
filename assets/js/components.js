@@ -123,40 +123,4 @@ function injectComponents() {
   }
 }
 
-function injectFonts() {
-  if (!document.getElementById('gfonts')) {
-    const link = document.createElement('link');
-    link.id = 'gfonts';
-    link.rel = 'stylesheet';
-    link.href = 'https://fonts.googleapis.com/css2?family=Anton&family=Public+Sans:wght@400;500;600&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap';
-    document.head.appendChild(link);
-  }
-}
-
-function initLightbox() {
-  const lb = document.createElement('div');
-  lb.id = 'r-lightbox';
-  lb.className = 'r-lightbox';
-  lb.innerHTML = '<button class="r-lightbox-close" aria-label="Fermer">&times;</button><img src="" alt="">';
-  document.body.appendChild(lb);
-
-  const img = lb.querySelector('img');
-
-  document.addEventListener('click', e => {
-    const thumb = e.target.closest('[data-lightbox]');
-    if (thumb) {
-      img.src = thumb.src;
-      img.alt = thumb.alt;
-      lb.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-  });
-
-  const close = () => { lb.classList.remove('open'); document.body.style.overflow = ''; };
-  lb.querySelector('.r-lightbox-close').addEventListener('click', close);
-  lb.addEventListener('click', e => { if (e.target === lb) close(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
-}
-
-injectFonts();
-document.addEventListener('DOMContentLoaded', () => { injectComponents(); initLightbox(); });
+document.addEventListener('DOMContentLoaded', injectComponents);

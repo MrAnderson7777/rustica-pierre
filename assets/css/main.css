@@ -50,7 +50,8 @@ body {
   --r-px: clamp(1rem, 4vw, 3rem);
 }
 
-/* -- Google Fonts chargées via components.js -- */
+/* -- Google Fonts -- */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Public+Sans:wght@400;500;600&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
 
 /* ==========================================================
    LAYOUT
@@ -327,53 +328,6 @@ body {
 /* ==========================================================
    PRODUCT CARDS
    ========================================================== */
-/* Product Gallery (thumbnails + lightbox) */
-.product-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 0.5rem;
-  margin-top: 1.5rem;
-}
-.product-gallery-thumb {
-  width: 100%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
-  display: block;
-  cursor: zoom-in;
-  transition: opacity 0.2s;
-}
-.product-gallery-thumb:hover { opacity: 0.82; }
-
-.r-lightbox {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(15,10,5,0.95);
-  z-index: 9999;
-  align-items: center;
-  justify-content: center;
-  cursor: zoom-out;
-}
-.r-lightbox.open { display: flex; }
-.r-lightbox img {
-  max-width: min(90vw, 1200px);
-  max-height: 90vh;
-  object-fit: contain;
-}
-.r-lightbox-close {
-  position: absolute;
-  top: 1rem;
-  right: 1.5rem;
-  color: rgba(255,255,255,0.75);
-  font-size: 2.5rem;
-  cursor: pointer;
-  background: none;
-  border: none;
-  line-height: 1;
-  font-family: sans-serif;
-}
-.r-lightbox-close:hover { color: #fff; }
-
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -401,9 +355,9 @@ body {
 .product-card-label { margin-bottom: 0.5rem; }
 .product-card-title {
   font-family: var(--r-font-display);
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
   margin-bottom: 0.75rem;
   color: var(--r-noir);
 }
@@ -445,8 +399,8 @@ body {
 .stat-number {
   font-family: var(--r-font-display);
   font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: 700;
   color: var(--r-terracotta);
+  text-transform: uppercase;
   display: block;
   line-height: 1;
 }
@@ -527,8 +481,8 @@ body {
 .cta-band-title {
   font-family: var(--r-font-display);
   font-size: clamp(1.75rem, 4vw, 3rem);
-  font-weight: 700;
-  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
   margin-bottom: 1rem;
 }
 .cta-band-sub {
@@ -574,8 +528,8 @@ body {
 .realisation-label {
   font-family: var(--r-font-display);
   font-size: 1.125rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   color: #fff;
 }
 
@@ -595,9 +549,9 @@ body {
 .page-title {
   font-family: var(--r-font-display);
   font-size: clamp(2rem, 5vw, 4rem);
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
   margin-bottom: 1rem;
   color: var(--r-noir);
 }
