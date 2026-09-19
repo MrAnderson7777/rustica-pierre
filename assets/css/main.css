@@ -43,6 +43,9 @@ body {
   --r-terracotta: #C66B3D;
   --r-ink:        #2A2520;
 
+  --wp--preset--spacing--40: 1.5rem;
+  --wp--preset--spacing--60: 2.5rem;
+
   --r-shadow-card: 0 1px 3px rgba(21,17,12,0.06), 0 8px 24px rgba(21,17,12,0.06);
   --r-shadow-hover: 0 2px 8px rgba(21,17,12,0.08), 0 16px 40px rgba(21,17,12,0.1);
 
@@ -691,8 +694,7 @@ body {
 
 @media (max-width: 768px) {
   .product-split { grid-template-columns: 1fr; gap: 2rem; }
-  .product-split.reverse { direction: ltr; }
-  .product-split.reverse .product-split-img { order: -1; }
+  .product-split:not(.reverse) > div:last-child { order: -1; }
 }
 
 /* ==========================================================
@@ -733,6 +735,13 @@ body {
 }
 .form-input::placeholder, .form-textarea::placeholder { color: var(--r-sable-dark); }
 .form-textarea { min-height: 150px; resize: vertical; }
+.form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235C4F3D' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
 .form-success {
   display: none;
   background: #f0faf0;
@@ -935,4 +944,42 @@ body {
   position: absolute; width: 1px; height: 1px;
   padding: 0; margin: -1px; overflow: hidden;
   clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ==========================================================
+   WP-STYLE INLINE ELEMENTS (articles)
+   ========================================================== */
+.wp-block-buttons { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.wp-block-button__link,
+.wp-element-button {
+  display: inline-block;
+  background: var(--r-terracotta);
+  color: #fff !important;
+  font-family: var(--r-font-body);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: background 0.2s var(--r-ease);
+  cursor: pointer;
+  line-height: 1;
+}
+.wp-block-button__link:hover,
+.wp-element-button:hover { background: #a8562e; }
+.wp-block-separator {
+  border: none;
+  border-top: 1px solid var(--r-sable);
+  height: 0;
+}
+
+/* ==========================================================
+   MOBILE — Padding reductions
+   ========================================================== */
+@media (max-width: 600px) {
+  .page-header { padding: 2.5rem var(--r-px) 2rem; }
+  .article-header { padding: 2.5rem var(--r-px) 2rem; }
+  .article-body { padding: 2rem var(--r-px) 3rem; }
+  .hero-content { padding: 3.5rem var(--r-px); }
+  .cta-band { padding: 3rem 0; }
 }

@@ -2,6 +2,20 @@
    RUSTICA PIERRE — Components (Header / Footer injection)
    ========================================================== */
 
+// -- GA4 — décommenter et remplacer G-XXXXXXXXXX quand le NDD et l'ID sont prêts --
+// const GA_ID = 'G-XXXXXXXXXX';
+// (function() {
+//   var s = document.createElement('script');
+//   s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+//   s.async = true;
+//   document.head.appendChild(s);
+//   window.dataLayer = window.dataLayer || [];
+//   function gtag(){dataLayer.push(arguments);}
+//   window.gtag = gtag;
+//   gtag('js', new Date());
+//   gtag('config', GA_ID);
+// })();
+
 const HEADER_HTML = `
 <header class="site-header" id="site-header">
   <div class="header-inner">
