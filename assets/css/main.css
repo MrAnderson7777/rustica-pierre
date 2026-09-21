@@ -628,11 +628,10 @@ body {
 
 .product-main-img {
   width: 100%;
-  aspect-ratio: 4/3;
+  height: 420px;
   object-fit: cover;
   display: block;
   cursor: zoom-in;
-  max-height: 520px;
 }
 
 .product-thumbs { display: flex; gap: 0.375rem; }
@@ -711,7 +710,7 @@ body {
 @media (max-width: 768px) {
   .product-split { grid-template-columns: 1fr; gap: 2rem; }
   .product-split:not(.reverse) > div:last-child { order: -1; }
-  .product-main-img { max-height: 260px; }
+  .product-main-img { height: 240px; }
 }
 
 /* ==========================================================
