@@ -126,6 +126,14 @@ function injectComponents() {
         toggle.setAttribute('aria-expanded', 'false');
       }
     });
+    // Close on nav link click (mobile)
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
   }
 
   // Header scroll shadow

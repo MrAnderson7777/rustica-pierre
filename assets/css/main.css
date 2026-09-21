@@ -4,6 +4,8 @@
    Terracotta signature #C66B3D
    ========================================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Public+Sans:wght@400;500;600&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
@@ -53,8 +55,7 @@ body {
   --r-px: clamp(1rem, 4vw, 3rem);
 }
 
-/* -- Google Fonts -- */
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Public+Sans:wght@400;500;600&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
+/* -- Google Fonts (chargé en début de fichier) -- */
 
 /* ==========================================================
    LAYOUT
@@ -430,7 +431,7 @@ body {
   margin-top: 0.6rem;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
