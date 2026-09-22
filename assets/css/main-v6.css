@@ -612,10 +612,11 @@ body {
    ========================================================== */
 .product-split {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 4rem;
   align-items: center;
 }
+.product-split > * { min-width: 0; }
 .product-split-img {
   width: 100%;
   display: block;
