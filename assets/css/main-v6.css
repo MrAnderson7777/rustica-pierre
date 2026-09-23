@@ -4,7 +4,7 @@
    Terracotta signature #C66B3D
    ========================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Public+Sans:wght@400;500;600&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('/assets/fonts/fonts.css');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1003,4 +1003,55 @@ body {
   .article-body { padding: 2rem var(--r-px) 3rem; }
   .hero-content { padding: 3.5rem var(--r-px); }
   .cta-band { padding: 3rem 0; }
+}
+
+/* ==========================================================
+   BACK TO TOP
+   ========================================================== */
+#back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  background: var(--r-anthracite);
+  color: var(--r-white);
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .25s, visibility .25s;
+  z-index: 900;
+}
+#back-to-top.visible { opacity: 1; visibility: visible; }
+#back-to-top:hover { background: var(--r-terracotta); }
+
+/* ==========================================================
+   COOKIE BANNER
+   ========================================================== */
+#cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--r-anthracite);
+  color: var(--r-white);
+  padding: 1.25rem var(--r-px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  z-index: 9999;
+  font-size: .875rem;
+  line-height: 1.5;
+}
+#cookie-banner p { margin: 0; opacity: .85; }
+.cookie-actions { display: flex; gap: .75rem; flex-shrink: 0; }
+@media (max-width: 600px) {
+  #cookie-banner { flex-direction: column; align-items: flex-start; }
 }

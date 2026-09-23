@@ -85,7 +85,11 @@ const FOOTER_HTML = `
     </div>
     <div class="footer-bottom">
       <span>© 2026 Bousquet Carrière & TP — Rustica Pierre · SIREN 421 565 581</span>
-      <span>Villefranche-de-Rouergue, Aveyron (12)</span>
+      <span>
+        <a href="/mentions-legales/" style="color:inherit;opacity:.6">Mentions légales</a>
+        &nbsp;·&nbsp;
+        <a href="/confidentialite/" style="color:inherit;opacity:.6">Confidentialité</a>
+      </span>
     </div>
   </div>
 </footer>`;
@@ -183,4 +187,45 @@ function initProductGallery() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => { injectComponents(); initLightbox(); initProductGallery(); });
+function initBackToTop() {
+  const btn = document.createElement('button');
+  btn.id = 'back-to-top';
+  btn.setAttribute('aria-label', 'Retour en haut de page');
+  btn.innerHTML = '&#8593;';
+  document.body.appendChild(btn);
+
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+function initCookieBanner() {
+  // Ne s'affiche que si GA4 est activé (GA_ID décommenté) ET consentement pas encore donné
+  if (typeof GA_ID === 'undefined') return;
+  if (localStorage.getItem('r_cookie_consent')) return;
+
+  const banner = document.createElement('div');
+  banner.id = 'cookie-banner';
+  banner.innerHTML = `
+    <p>Ce site utilise Google Analytics pour mesurer l'audience. Aucune donnée personnelle n'est vendue.</p>
+    <div class="cookie-actions">
+      <button id="cookie-accept" class="btn btn-primary" style="font-size:.85rem;padding:.5rem 1.25rem">Accepter</button>
+      <button id="cookie-refuse" style="font-size:.85rem;padding:.5rem 1.25rem;background:none;border:1px solid var(--r-terre);cursor:pointer">Refuser</button>
+    </div>`;
+  document.body.appendChild(banner);
+
+  document.getElementById('cookie-accept').addEventListener('click', () => {
+    localStorage.setItem('r_cookie_consent', 'accepted');
+    banner.remove();
+  });
+  document.getElementById('cookie-refuse').addEventListener('click', () => {
+    localStorage.setItem('r_cookie_consent', 'refused');
+    banner.remove();
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => { injectComponents(); initLightbox(); initProductGallery(); initBackToTop(); initCookieBanner(); });
