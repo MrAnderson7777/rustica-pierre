@@ -50,7 +50,7 @@ const FOOTER_HTML = `
           <p><a href="mailto:contact@bousquet-carriere-tp.fr">contact@bousquet-carriere-tp.fr</a></p>
         </div>
         <p class="footer-rating" style="margin-top:1rem">
-          <span>★ 4.6/5</span> · 11 avis Google
+          <span>★ 4.8/5</span> · 6 avis Google
         </p>
       </div>
       <div>
