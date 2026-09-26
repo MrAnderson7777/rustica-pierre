@@ -149,41 +149,101 @@ function injectComponents() {
   }
 }
 
+// Lightbox state
+let _lbImages = [];
+let _lbIndex = 0;
+
 function initLightbox() {
   const lb = document.createElement('div');
   lb.id = 'r-lightbox';
   lb.className = 'r-lightbox';
-  lb.innerHTML = '<button class="r-lightbox-close" aria-label="Fermer">&times;</button><img src="" alt="">';
+  lb.setAttribute('role', 'dialog');
+  lb.setAttribute('aria-modal', 'true');
+  lb.innerHTML = [
+    '<button class="r-lightbox-close" aria-label="Fermer">&times;</button>',
+    '<button class="r-lb-prev" aria-label="Image précédente">&#8249;</button>',
+    '<img src="" alt="">',
+    '<button class="r-lb-next" aria-label="Image suivante">&#8250;</button>',
+    '<span class="r-lb-counter"></span>',
+  ].join('');
   document.body.appendChild(lb);
 
   const close = () => { lb.classList.remove('open'); document.body.style.overflow = ''; };
+
   lb.querySelector('.r-lightbox-close').addEventListener('click', close);
   lb.addEventListener('click', e => { if (e.target === lb) close(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  lb.querySelector('.r-lb-prev').addEventListener('click', e => {
+    e.stopPropagation();
+    if (_lbIndex > 0) { _lbIndex--; _lbUpdate(); }
+  });
+  lb.querySelector('.r-lb-next').addEventListener('click', e => {
+    e.stopPropagation();
+    if (_lbIndex < _lbImages.length - 1) { _lbIndex++; _lbUpdate(); }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft' && _lbIndex > 0) { _lbIndex--; _lbUpdate(); }
+    if (e.key === 'ArrowRight' && _lbIndex < _lbImages.length - 1) { _lbIndex++; _lbUpdate(); }
+  });
+}
+
+function _lbUpdate() {
+  const lb = document.getElementById('r-lightbox');
+  const item = _lbImages[_lbIndex];
+  lb.querySelector('img').src = item.src;
+  lb.querySelector('img').alt = item.alt;
+  lb.querySelector('.r-lb-prev').disabled = _lbIndex === 0;
+  lb.querySelector('.r-lb-next').disabled = _lbIndex === _lbImages.length - 1;
+  const count = _lbImages.length > 1
+    ? `${_lbIndex + 1} / ${_lbImages.length}`
+    : '';
+  lb.querySelector('.r-lb-counter').textContent = count;
+}
+
+function _lbOpen(images, index) {
+  _lbImages = images;
+  _lbIndex = index;
+  _lbUpdate();
+  const lb = document.getElementById('r-lightbox');
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
 
 function initProductGallery() {
-  // Thumbnail → swap main image
-  document.addEventListener('click', e => {
-    const thumb = e.target.closest('.product-thumb');
-    if (!thumb) return;
-    const container = thumb.closest('.product-images');
+  // Build image list per product and wire clicks
+  document.querySelectorAll('.product-images').forEach(container => {
     const mainImg = container.querySelector('.product-main-img');
-    mainImg.src = thumb.src;
-    mainImg.alt = thumb.alt;
-    container.querySelectorAll('.product-thumb').forEach(t => t.classList.remove('active'));
-    thumb.classList.add('active');
-  });
+    const thumbs = Array.from(container.querySelectorAll('.product-thumb'));
 
-  // Main image → lightbox
-  document.addEventListener('click', e => {
-    const mainImg = e.target.closest('.product-main-img');
-    if (!mainImg) return;
-    const lb = document.getElementById('r-lightbox');
-    lb.querySelector('img').src = mainImg.src;
-    lb.querySelector('img').alt = mainImg.alt;
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    // Collect all images: main first, then thumbs (dedup by src)
+    const seen = new Set();
+    const images = [];
+    [mainImg, ...thumbs].forEach(el => {
+      if (el && el.src && !seen.has(el.src)) {
+        seen.add(el.src);
+        images.push({ src: el.src, alt: el.alt });
+      }
+    });
+
+    if (mainImg) {
+      mainImg.addEventListener('click', () => _lbOpen(images, 0));
+    }
+
+    thumbs.forEach((thumb, i) => {
+      // Find index of this thumb in the deduplicated list
+      const idx = images.findIndex(im => im.src === thumb.src);
+      thumb.addEventListener('click', () => {
+        // Update active state + sync main image
+        thumbs.forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+        if (mainImg) { mainImg.src = thumb.src; mainImg.alt = thumb.alt; }
+        // Open lightbox directly
+        _lbOpen(images, idx >= 0 ? idx : i + 1);
+      });
+    });
   });
 }
 
